@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Framework VINTF shell (recovery ramdisk has no /system/etc/vintf/
+manifest.xml, so AIDL servicemanager reports NULL framework manifest and
+refuses keystore2 registration). Schema 2.0 (ramdisk libvintf is ancient;
+stock v7.0 fails to parse). Device HAL fragments in manifest/ merge onto
+this (incl. the base android.system.keystore2-service.xml). Verified live:
+after this + servicemanager restart, keystore2 logs "Successfully registered
+Keystore 2.0 service." -->
+<manifest version="2.0" type="framework">
+</manifest>

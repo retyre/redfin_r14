@@ -1,0 +1,7 @@
+# redfin system props (installed to /system/build.prop via TARGET_SYSTEM_PROP)
+ro.adb.secure=0
+ro.board.platform=lito
+
+# Gatekeeper: disable SPU path (bramble tree precedent - QSEE gatekeeper
+# misbehaves on redbull-family SoCs when the SPU backend is attempted)
+vendor.gatekeeper.disable_spu=true

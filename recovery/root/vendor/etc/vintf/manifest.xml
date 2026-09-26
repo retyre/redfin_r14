@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Device VINTF manifest for redfin recovery (Snapdragon QSEE crypto path).
+     Schema 2.0 ONLY: recovery carries libvintf 8.0, and newer stock
+     schemas break HAL registration lookups (leegarchat lesson).
+     Source of truth: stock /vendor/etc/vintf/manifest.xml (v7.0,
+     target-level 5, from device/google/redbull), which declares
+     keymaster@4.0 + gatekeeper@1.0 as the FBE backend. Citadel/weaver
+     entries are deliberately absent (StrongBox, not FBE).
+     Installed to recovery ramdisk /vendor/etc/vintf/manifest.xml so the
+     Keymaster_Ver detection finds it without the stock vendor mount. -->
+<manifest version="2.0" type="device">
+    <hal format="hidl">
+        <name>android.hardware.keymaster</name>
+        <transport>hwbinder</transport>
+        <version>4.0</version>
+        <interface>
+            <name>IKeymasterDevice</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.gatekeeper</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IGatekeeper</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</manifest>

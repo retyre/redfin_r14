@@ -1,0 +1,43 @@
+{
+  "_comment": "redfin (Pixel 5, sm7250/lito) vendor config. Single source of truth (leegarchat family.json pattern); .mk values mirror this file. NOT Tensor: no Rust KeyMint, no Titan daemon, no weaver-as-FBE.",
+  "device": "redfin",
+  "model": "Pixel 5",
+  "soc": "sm7250",
+  "platform": "lito",
+  "slot": "a/b",
+  "android": "14 (UP1A.231105.001.B2)",
+  "touch": {
+    "modules": ["ftm5.ko", "sec_touch.ko"],
+    "modules_load": "recovery/root/lib/modules/modules.load.recovery"
+  },
+  "display": {
+    "brightness_path": "/sys/class/backlight/panel0-backlight/brightness",
+    "secondary_brightness_path": "/sys/class/leds/lcd-backlight/brightness",
+    "max": 1023,
+    "default": 80
+  },
+  "crypto": {
+    "backend": "QTI QSEE (HIDL, NOT KeyMint-AIDL)",
+    "keymaster": "@4.0::IKeymasterDevice/default",
+    "gatekeeper": "@1.0::IGatekeeper/default",
+    "vintf_schema": "2.0",
+    "fbe_policy": 2,
+    "fstab_crypto": "fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized",
+    "metadata_keydir": "/metadata/vold/metadata_encryption",
+    "keystore2_needs": ["libkeymint.so (stock A14)", "keymint-V3-ndk", "rkp-V3-ndk", "secureclock-V1-ndk", "sharedsecret-V1-ndk", "libkeymaster_messages.so (stock)", "libkeymaster_portable.so (stock)", "libpuresoftkeymasterdevice.so (stock)"],
+    "qsee_userspace_needs": ["libQSEEComAPI.so", "libdrmfs.so", "libdiag.so", "libqcbor.so"],
+    "props": {"ro.board.platform": "lito", "vendor.gatekeeper.disable_spu": "true"}
+  },
+  "kernel": {
+    "prebuilt": "prebuilt/kernel (stock boot_b, 9315974 bytes)",
+    "dtb": "prebuilt/dtb.img",
+    "header_version": 3,
+    "cmdline": "console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 printk.devkmsg=on androidboot.memcg=1 cgroup.memory=nokmem androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 androidboot.boot_devices=soc/1d84000.ufshc loop.max_part=7 twrpfastboot=1"
+  },
+  "partitions": {
+    "boot": 100663296,
+    "vendor_boot": 100663296,
+    "userdata_fs": "f2fs",
+    "dynamic": ["system", "vendor", "product", "system_ext"]
+  }
+}

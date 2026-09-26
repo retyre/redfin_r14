@@ -1,0 +1,41 @@
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+on init
+    wait /sys/devices/platform/soc/a600000.ssusb/a600000.dwc3/driver 10
+    setprop sys.usb.configfs 1
+    # Don't lose recovery logs- keep warm reset for coming out of recovery.
+    write /sys/module/msm_poweroff/parameters/warm_reset 1
+    # Enable thermal mitigation
+    write /sys/devices/virtual/thermal/tz-by-name/backup-charge/mode enabled
+    # QTI crypto HALs (stock redfin A14: HIDL keymaster@4.0 + gatekeeper@1.0
+    # on QSEE; citadel/weaver is StrongBox-only, not FBE). Binaries in
+    # /vendor/bin/hw with libs in /vendor/lib64 (sphal namespace). Started
+    # as root like the proven manual sequence (stock user/group names do
+    # not resolve in the recovery ramdisk).
+    # qseecomd FIRST: keymaster/gatekeeper register only once its listener
+    # services are up (needs librpmb.so + libssd.so in /vendor/lib64;
+    # without them it exits silently and the HALs never register).
+    start qseecomd
+    start keymaster-4-0
+    start gatekeeper-1-0
+
+on early-init
+    # Wait to make sure we do not try to talk too early to the display
+    wait /sys/class/drm/card0
+
+service qseecomd /vendor/bin/hw/qseecomd
+    class early_hal
+    user root
+    seclabel u:r:recovery:s0
+
+service keymaster-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-service-qti
+    class early_hal
+    user root
+    seclabel u:r:recovery:s0
+
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
+    class early_hal
+    user root
+    seclabel u:r:recovery:s0
