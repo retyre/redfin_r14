@@ -1,0 +1,118 @@
+phy-qcom-ufs.ko: qcom_rpmh.ko
+phy-qcom-ufs-qrbtc-sdm845.ko: phy-qcom-ufs.ko qcom_rpmh.ko
+phy-qcom-ufs-qmp-v4.ko: phy-qcom-ufs.ko qcom_rpmh.ko
+phy-qcom-ufs-qmp-v4-lito.ko: phy-qcom-ufs.ko qcom_rpmh.ko
+phy-qcom-ufs-qmp-v3-660.ko: phy-qcom-ufs.ko qcom_rpmh.ko
+phy-qcom-ufs-qmp-v3.ko: phy-qcom-ufs.ko qcom_rpmh.ko
+pinctrl-msm.ko: 
+pinctrl-spmi-gpio.ko: 
+pinctrl-spmi-mpp.ko: 
+pinctrl-lito.ko: pinctrl-msm.ko
+pwm-qti-lpg.ko: 
+qcom-spmi-wled.ko: qpnp-revid.ko
+clk-qcom.ko: 
+clk-aop-qmp.ko: 
+clk-rpmh.ko: qcom_rpmh.ko
+debugcc-lito.ko: 
+gcc-lito.ko: clk-qcom.ko
+clk-spmi-pmic-div.ko: 
+mdt_loader.ko: msm_scm.ko
+qcom_rpmh.ko: 
+smem.ko: 
+smem_state.ko: 
+smp2p.ko: smem.ko smem_state.ko
+llcc-slice.ko: 
+llcc-orchid.ko: llcc-slice.ko
+qtee_shm_bridge.ko: 
+service-notifier.ko: service-locator.ko subsystem_notif.ko
+service-locator.ko: 
+subsys-pil-tz.ko: subsystem-restart.ko subsystem_notif.ko qtee_shm_bridge.ko smem.ko smem_state.ko
+smcinvoke.ko: qseecom.ko ion-alloc.ko qtee_shm_bridge.ko
+subsystem_notif.ko: 
+subsystem-restart.ko: subsystem_notif.ko smem_state.ko
+msm_bus_rpmh.ko: qcom_rpmh.ko
+fsa4480-i2c.ko: 
+glink_probe.ko: qcom_glink_spss.ko qcom_glink_smem.ko qcom_glink_native.ko subsystem_notif.ko smem.ko
+glink_pkt.ko: 
+smp2p_sleepstate.ko: smem_state.ko
+event_timer.ko: 
+rpmh_master_stat.ko: smem.ko
+modemsmem.ko: smem.ko
+qpnp-amoled-regulator.ko: 
+rpmh-regulator.ko: qcom_rpmh.ko
+slg51000-regulator.ko: 
+tps-regulator.ko: 
+msm_rng.ko: 
+regmap-spmi.ko: 
+hdcp_qseecom.ko: qseecom.ko ion-alloc.ko qtee_shm_bridge.ko
+qseecom.ko: ion-alloc.ko qtee_shm_bridge.ko
+citadel-spi.ko: 
+qcom-i2c-pmic.ko: 
+qcom-spmi-pmic.ko: regmap-spmi.ko
+qcedev-module.ko: 
+qcrypto.ko: 
+ufs_qcom.ko: ufshcd-pltfrm.ko ufshcd-core.ko qtee_shm_bridge.ko phy-qcom-ufs.ko qcom_rpmh.ko
+ufshcd-core.ko: 
+ufshcd-pltfrm.ko: ufshcd-core.ko
+spi-geni-qcom.ko: 
+spmi-pmic-arb.ko: 
+phy-generic.ko: 
+phy-msm-ssusb-qmp.ko: 
+phy-msm-snps-hs.ko: 
+xhci-plat-hcd.ko: 
+usb_f_diag.ko: 
+usb_f_cdev.ko: 
+usb_f_ccid.ko: 
+usb_f_qdss.ko: usb-dwc3-msm.ko pmic-voter.ko dwc3.ko
+usb_f_gsi.ko: usb-dwc3-msm.ko pmic-voter.ko dwc3.ko subsystem-restart.ko subsystem_notif.ko qtee_shm_bridge.ko smem.ko smem_state.ko
+usb_f_mtp.ko: 
+usb_f_ptp.ko: usb_f_mtp.ko
+tcpm.ko: 
+qpnp_pdphy.ko: tcpm.ko usb-dwc3-msm.ko pmic-voter.ko dwc3.ko
+dwc3.ko: 
+dwc3-haps.ko: 
+dwc3-of-simple.ko: 
+dwc3-qcom.ko: 
+usb-dwc3-msm.ko: pmic-voter.ko dwc3.ko
+touch_offload.ko: 
+touchscreen_tbn.ko: 
+qpnp-power-on.ko: 
+fpc1020_platform_tee.ko: 
+rtc-pm8xxx.ko: 
+i2c-qcom-geni.ko: 
+pmic-voter.ko: 
+qpnp-battery.ko: pmic-voter.ko
+qpnp-smb5-charger.ko: qpnp-battery.ko qpnp-revid.ko pmic-voter.ko
+qpnp-qgauge.ko: qpnp-smb5-charger.ko qpnp-battery.ko qpnp-revid.ko pmic-voter.ko
+overheat_mitigation.ko: pmic-voter.ko
+bcl_pmic5.ko: 
+regulator_aop_cdev.ko: 
+qcom-spmi-temp-alarm.ko: 
+dm-user.ko: 
+leds-qpnp-flash-v2.ko: leds-qpnp-flash-common.ko qpnp-revid.ko
+leds-qpnp-flash-common.ko: 
+msm_scm.ko: 
+ion-alloc.ko: qtee_shm_bridge.ko
+msm_ext_display.ko: 
+qpnp-revid.ko: 
+qcom_hwspinlock.ko: 
+qcom-spmi-adc5.ko: qpnp-revid.ko
+coresight-clk-placeholder.ko: 
+coresight-clk-amba-placeholder.ko: 
+nvmem_qfprom.ko: 
+qcom-spmi-sdam.ko: 
+qcom_glink_native.ko: subsystem_notif.ko
+qcom_glink_smem.ko: qcom_glink_native.ko subsystem_notif.ko smem.ko
+qcom_glink_spss.ko: qcom_glink_native.ko subsystem_notif.ko smem.ko
+usb-audio-qmi.ko: 
+snd-soc-rt5514-spi.ko: 
+snd-soc-cs35l41-i2c.ko: 
+msm_drm.ko: hdcp_qseecom.ko fsa4480-i2c.ko msm_ext_display.ko qseecom.ko ion-alloc.ko qtee_shm_bridge.ko llcc-slice.ko clk-qcom.ko qcom_rpmh.ko
+cam-sync.ko: ion-alloc.ko qtee_shm_bridge.ko
+cam_sensor_vsync_dev.ko: cam_sensor_vsync_pb.ko ion-alloc.ko qtee_shm_bridge.ko
+cam_sensor_vsync_pb.ko: 
+pinctrl_lpi_dlkm.ko: service-notifier.ko service-locator.ko ion-alloc.ko subsystem-restart.ko subsystem_notif.ko qtee_shm_bridge.ko smem_state.ko
+qrtr.ko: 
+qrtr-smd.ko: qrtr.ko
+ftm5.ko: msm_drm.ko hdcp_qseecom.ko touch_offload.ko touchscreen_tbn.ko fsa4480-i2c.ko msm_ext_display.ko qseecom.ko ion-alloc.ko qtee_shm_bridge.ko llcc-slice.ko clk-qcom.ko qcom_rpmh.ko
+sec_touch.ko: touch_offload.ko touchscreen_tbn.ko
