@@ -21,10 +21,6 @@
 
 DEVICE_PATH := device/google/redfin
 
-# Android 14 release config (build/make r14 requires TARGET_RELEASE or a
-# release-qualified lunch combo; ap2a is the listed valid release)
-TARGET_RELEASE := ap2a
-
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture (kryo475)
